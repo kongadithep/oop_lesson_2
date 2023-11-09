@@ -178,3 +178,13 @@ print("first class",my_table_3_firstclass.aggregate(lambda x: sum(x)/len(x),'far
 print("third class",my_table_3_thirdclass.aggregate(lambda x: sum(x)/len(x),'fare'))
 
 
+my_table_3_male = my_table_3.filter((lambda x:x["gender"]== "M"))
+my_table_3_female = my_table_3.filter((lambda x:x["gender"] == "F"))
+# print(my_table_3_male)
+# print("first class",my_table_3_male.select('survived'))
+# print("third class",my_table_3_female.aggregate(lambda x: len(x),'survived'))
+my_table_3_survive_m = my_table_3_male.filter(lambda x:x["survived"] == "yes")
+my_table_3_survive_fm = my_table_3_female.filter(lambda x:x["survived"] == "yes")
+print(len(my_table_3_survive_m.table))
+print(len(my_table_3_survive_fm.table))
+
