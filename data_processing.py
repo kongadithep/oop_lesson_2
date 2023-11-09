@@ -89,6 +89,7 @@ table1 = Table('cities', cities)
 table2 = Table('countries', countries)
 table3 = Table('Teams',teams)
 table4 = Table('Players',players)
+table5 = Table('Titanic',titanic)
 
 my_DB = DB()
 my_DB.insert(table1)
@@ -143,6 +144,7 @@ my_DB.insert(table2)
 
 my_DB.insert(table3)
 my_DB.insert(table4)
+my_DB.insert(table5)
 my_table1 = my_DB.search('Teams')
 my_table2 = my_DB.search('Players')
 # my_table3_join = my_table1.join(my_table2,'team')
@@ -166,4 +168,13 @@ my_table2_forwards = my_table2.filter(lambda x:x["position"] == "forward")
 print("midfield pass",my_table2_midfielders.aggregate(lambda x: sum(x)/len(x),'passes'))
 print("forward pass",my_table2_forwards.aggregate(lambda x: sum(x)/len(x),'passes'))
 print()
+
+my_table_3 = my_DB.search('Titanic')
+
+my_table_3_firstclass = my_table_3.filter(lambda x:x["class"] == "1")
+my_table_3_thirdclass = my_table_3.filter(lambda x:x["class"] == "3")
+
+print("first class",my_table_3_firstclass.aggregate(lambda x: sum(x)/len(x),'fare'))
+print("third class",my_table_3_thirdclass.aggregate(lambda x: sum(x)/len(x),'fare'))
+
 
